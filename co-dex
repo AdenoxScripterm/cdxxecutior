@@ -2116,6 +2116,7 @@ do
 					BackgroundTransparency = 1, 
 					FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal), 
 					MouseButton1Click = function()
+                  WhitelistButtonClick()
 						changeTab(false);
 					end,
 					Name = "premiumUser", 
@@ -2184,6 +2185,27 @@ do
 				})
 			})
 		});
+   -- Función lista para poner en el botón
+local function WhitelistButtonClick()
+	
+	local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start()
+	
+	task.wait(1.2)                    -- Pequeño delay para que se vea el proceso
+	whitelistStep:Complete()          -- Completa el paso inmediatamente
+	
+	-- Continúa con el resto automáticamente
+	local setupStep = startupStep.new("Setting Up...", "Setup Completed!", ui.whitelist.process):Start()
+	doSetup()
+	setupStep:Complete()
+
+	local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start()
+	local basis = createBasis(directory)
+	loadUIStep:Complete()
+	
+	task.wait(1)
+	completionSignal:Fire(basis)
+end   
+
 
 		task.spawn(function()
 			local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start();
@@ -4099,7 +4121,7 @@ do
 				Parent = base.buttons
 			});
 			
-			editorButton("Ejecutar Lo Copiado", "rbxassetid://14808228630", {
+			editorButton("Execute Clipboard", "rbxassetid://14808228630", {
 				MouseButton1Click = function()
 					if getclipboard then
 						internalUtils:Execute(getclipboard());
@@ -4108,14 +4130,14 @@ do
 				Parent = base.buttons
 			});
 	
-			editorButton("Limpiar Texto", "rbxassetid://14808219001", {
+			editorButton("Clear", "rbxassetid://14808219001", {
 				MouseButton1Click = function()
 					self:SetText("");
 				end,
 				Parent = base.buttons
 			});
 	
-			editorButton("Ejecutar", "rbxassetid://14808225296", {
+			editorButton("Execute", "rbxassetid://14808225296", {
 				BackgroundColor3 = Color3.fromRGB(235, 69, 69),
 				MouseButton1Click = function()
 					internalUtils:Execute(self.text);
