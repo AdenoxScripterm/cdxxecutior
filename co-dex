@@ -1,4 +1,4 @@
-local framework = setmetatable({
+	local framework = setmetatable({
 	dependencies = {
 		utils = {}
 	},
@@ -646,8 +646,8 @@ do
 		selected = nil,
 		cache = {
 			{
-				title = "Script 1",
-				content = "print('Hello World!');",
+				title = "Note",
+				content = "-- This is the real Codex UI but Modified.",
 				index = 1
 			}
 		},
@@ -1814,7 +1814,7 @@ do
 		for i, v in changelog do
 			str ..= string.format("%s<font color=\"#eb4545\">[%s]</font>\n\n", str == "" and "" or "\n\n", DateTime.fromIsoDate(v.stamp):FormatLocalTime("ll", "en-us"));
 			for i2, v2 in v.data do
-				str ..= "Ã¢â‚¬Â¢ " .. v2;
+				str ..= "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ " .. v2;
 				if i2 < #v.data then
 					str ..= "\n";
 				end
@@ -1984,9 +1984,11 @@ do
 	
 	--[[ Functions ]]--
 	
+	dd = true
+	
 	local function checkWhitelist()
 		if getgenv then
-			return internalUtils:Request("https://api.codex.lol/v1/auth/authenticate", "POST") ~= false;
+			return internalUtils:Request("https://api.codex.lol/v1/auth/authenticate", "POST") ~= true;
 		end
 		return false;
 	end
@@ -2059,7 +2061,7 @@ do
 				AnchorPoint = Vector2.new(0.5, 0.5),
 				Name = "title",
 				Position = UDim2.new(0.5, 0, 0.2, -20),
-				Text = "Codex Android",
+				Text = "Codex Modified",
 				TextSize = 24
 			}),
 			textLabel({
@@ -2116,7 +2118,6 @@ do
 					BackgroundTransparency = 1, 
 					FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal), 
 					MouseButton1Click = function()
-                  WhitelistButtonClick()
 						changeTab(false);
 					end,
 					Name = "premiumUser", 
@@ -2185,46 +2186,27 @@ do
 				})
 			})
 		});
-   -- Función lista para poner en el botón
-local function WhitelistButtonClick()
+
+		task.spawn(function()
+			local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start();
+			repeat
+				task.wait(3);
+			until checkWhitelist();
+			whitelistStep:Complete();
 	
-	local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start()
+			local setupStep = startupStep.new("Setting Up...", "Setup Completed!", ui.whitelist.process):Start();
+			doSetup();
+			setupStep:Complete();
 	
-	task.wait(1.2)                    -- Pequeño delay para que se vea el proceso
-	whitelistStep:Complete()          -- Completa el paso inmediatamente
-	
-	-- Continúa con el resto automáticamente
-	local setupStep = startupStep.new("Setting Up...", "Setup Completed!", ui.whitelist.process):Start()
-	doSetup()
-	setupStep:Complete()
-
-	local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start()
-	local basis = createBasis(directory)
-	loadUIStep:Complete()
-	
-	task.wait(1)
-	completionSignal:Fire(basis)
-end   
-
-task.spawn(function()
-    local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start();
-    
-    -- Bypass inmediato del whitelist
-    task.wait(0.5)  -- Pequeño delay para que se vea el paso (opcional)
-    whitelistStep:Complete();
-
-    local setupStep = startupStep.new("Setting Up...", "Setup Completed!", ui.whitelist.process):Start();
-    doSetup();
-    setupStep:Complete();
-
-    local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start();
-    local basis = createBasis(directory);
-    loadUIStep:Complete();
-    task.wait(1);
-    completionSignal:Fire(basis);
-end);
-
-return ui;
+			local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start();
+			local basis = createBasis(directory);
+			loadUIStep:Complete();
+			task.wait(1);
+			completionSignal:Fire(basis);
+		end);
+		
+		return ui;
+	end
 	
 	--[[ Module ]]--
 	
@@ -2345,7 +2327,7 @@ do
 					FontSize = Enum.FontSize.Size18, 
 					Name = "title", 
 					Position = UDim2.new(0, 78, 0, 38), 
-					Text = "Codex Android", 
+					Text = "Codex Modified", 
 					TextColor3 = Color3.fromHex("ffffff"), 
 					TextSize = 16, 
 					TextTransparency = 1,
