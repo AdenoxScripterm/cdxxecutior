@@ -2327,7 +2327,7 @@ do
 					FontSize = Enum.FontSize.Size18, 
 					Name = "title", 
 					Position = UDim2.new(0, 78, 0, 38), 
-					Text = "Codex Modified", 
+					Text = "Codex: Salvred Hub", 
 					TextColor3 = Color3.fromHex("ffffff"), 
 					TextSize = 16, 
 					TextTransparency = 1,
@@ -2341,7 +2341,7 @@ do
 					FontSize = Enum.FontSize.Size12, 
 					Name = "poweredBy", 
 					Position = UDim2.new(0, 78, 0, 59), 
-					Text = "", 
+					Text = "Desarrollado y Impulsado Por: Salvred", 
 					TextColor3 = Color3.fromHex("ffffff"), 
 					TextSize = 12, 
 					TextTransparency = 1, 
@@ -2591,8 +2591,8 @@ do
 			teleportService:TeleportToPlaceInstance(game.PlaceId, jobId);
 		else
 			game:GetService("StarterGui"):SetCore("SendNotification", {
-				Title = "Codex Android",
-				Text = "No suitable servers found"
+				Title = "Codex: Salvred Hub",
+				Text = "No Hay Servidores Disponibles"
 			});
 		end
 	end
@@ -2605,16 +2605,16 @@ do
 	
 	local map = {
 		{
-			title = "Executor",
+			title = "Ejecutor Codex: Salvred Hub",
 			items = {
 				{
-					title = "Auto Execute",
+					title = "Auto Ejecutar",
 					linkedSetting = "executor.autoExecute",
 					optionType = "toggle",
 					state = true
 				},
 				{
-					title = "Auto Save Tabs",
+					title = "Auto Salvar Las Tabs (Del Editor)",
 					linkedSetting = "executor.autoSaveTabs",
 					optionType = "toggle",
 					state = false,
@@ -2628,7 +2628,7 @@ do
 					optionType = "separator"
 				},
 				{
-					title = "Unlock FPS",
+					title = "Conseguir Los FPS",
 					linkedSetting = "executor.fps.unlocked",
 					optionType = "toggle",
 					state = false,
@@ -2648,11 +2648,11 @@ do
 					end
 				},
 				{
-					title = "FPS Value",
+					title = "Valor De FPS",
 					linkedSetting = "executor.fps.value",
 					optionType = "slider",
 					min = 1,
-					max = 999,
+					max = 9999,
 					float = 1,
 					callback = function(value)
 						if cache.executor.fps.unlocked and not cache.executor.fps.vSync then
@@ -2663,10 +2663,10 @@ do
 			}
 		},
 		{
-			title = "Player",
+			title = "Jugador (Tu)",
 			items = {
 				{
-					title = "WalkSpeed Enabled",
+					title = "Velocidad Seleccionada Activar",
 					linkedSetting = "player.walkSpeed.enabled",
 					optionType = "toggle",
 					state = false,
@@ -2677,7 +2677,7 @@ do
 					end
 				},
 				{
-					title = "WalkSpeed Value",
+					title = "Valor De La Velocidad",
 					linkedSetting = "player.walkSpeed.value",
 					optionType = "slider",
 					min = 16,
@@ -2690,7 +2690,7 @@ do
 					end
 				},
 				{
-					title = "JumpPower Enabled",
+					title = "Poder Del Salto del Jugador",
 					linkedSetting = "player.jumpPower.enabled",
 					optionType = "toggle",
 					state = false,
@@ -2701,7 +2701,7 @@ do
 					end
 				},
 				{
-					title = "JumpPower Value",
+					title = "Valor del Salto",
 					linkedSetting = "player.jumpPower.value",
 					optionType = "slider",
 					min = 50,
@@ -2716,23 +2716,23 @@ do
 			}
 		},
 		{
-			title = "Server Hop",
+			title = "Servidores",
 			items = {
 				{
-					title = "Server Priority",
+					title = "Prioridad De Servidores",
 					linkedSetting = "serverHop.priority",
 					optionType = "dropdown",
 					items = { "Most Players", "Least Players", "Best Ping", "Random" }
 				},
 				{
-					title = "Server Hop",
+					title = "Cambiar de Servidor",
 					optionType = "button",
 					callback = function()
 						joinServer(cache.serverHop.priority);
 					end
 				},
 				{
-					title = "Rejoin Current Server",
+					title = "Unirte Al Mismo Servidor",
 					optionType = "button",
 					callback = function()
 						joinServer(nil, game.JobId);
@@ -3480,7 +3480,7 @@ do
 	--[[ Module ]]--
 	
 	local exploitSettings = {
-		title = "Exploit Settings",
+		title = "Configuraciones De Codex",
 		icon = "rbxassetid://11558196447",
 		overwritePosition = UDim2.new(0, 0, 1, -66),
 		selected = nil
@@ -4366,7 +4366,7 @@ do
 					FontSize = Enum.FontSize.Size18, 
 					Name = "text", 
 					Size = UDim2.new(1, 0, 1, 0), 
-					Text = "Auto Execute", 
+					Text = "Auto Ejecutar", 
 					TextColor3 = Color3.fromHex("9fa4ba"), 
 					TextSize = 16, 
 					TextWrap = true, 
@@ -4532,13 +4532,13 @@ do
 				textButton({
 					BackgroundColor3 = Color3.fromRGB(58, 58, 74), 
 					Name = "builtInLibrary", 
-					Text = "Built-in Library",
+					Text = "Libreria de Ya Hechos",
 					TextColor3 = Color3.fromRGB(159, 164, 186)
 				}),
 				textButton({
 					BackgroundColor3 = Color3.fromRGB(58, 58, 74), 
 					Name = "savedScripts", 
-					Text = "Saved Scripts",
+					Text = "Scripts que Salvaste",
 					TextColor3 = Color3.fromRGB(159, 164, 186)
 				})
 			}),
@@ -4905,7 +4905,7 @@ do
 					FontSize = Enum.FontSize.Size14, 
 					Name = "input", 
 					PlaceholderColor3 = Color3.fromHex("b2b2b2"), 
-					PlaceholderText = "Search...", 
+					PlaceholderText = "Busca...             ScriptBlox.com", 
 					Position = UDim2.new(0.5, 0, 0.5, 0), 
 					Size = UDim2.new(1, 0, 1, 0), 
 					Text = "", 
