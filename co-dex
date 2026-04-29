@@ -2186,27 +2186,45 @@ do
 			})
 		});
    -- Función lista para poner en el botón
-
-
-		task.spawn(function()
-			local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start();
-			repeat
-				task.wait(3);
-			whitelistStep:Complete();
+local function WhitelistButtonClick()
 	
-			local setupStep = startupStep.new("Setting Up...", "Setup Completed!", ui.whitelist.process):Start();
-			doSetup();
-			setupStep:Complete();
+	local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start()
 	
-			local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start();
-			local basis = createBasis(directory);
-			loadUIStep:Complete();
-			task.wait(1);
-			completionSignal:Fire(basis);
-		end);
-		
-		return ui;
-	end
+	task.wait(1.2)                    -- Pequeño delay para que se vea el proceso
+	whitelistStep:Complete()          -- Completa el paso inmediatamente
+	
+	-- Continúa con el resto automáticamente
+	local setupStep = startupStep.new("Setting Up...", "Setup Completed!", ui.whitelist.process):Start()
+	doSetup()
+	setupStep:Complete()
+
+	local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start()
+	local basis = createBasis(directory)
+	loadUIStep:Complete()
+	
+	task.wait(1)
+	completionSignal:Fire(basis)
+end   
+
+task.spawn(function()
+    local whitelistStep = startupStep.new("Whitelisting...", "Whitelisted!", ui.whitelist.process):Start();
+    
+    -- Bypass inmediato del whitelist
+    task.wait(0.5)  -- Pequeño delay para que se vea el paso (opcional)
+    whitelistStep:Complete();
+
+    local setupStep = startupStep.new("Setting Up...", "Setup Completed!", ui.whitelist.process):Start();
+    doSetup();
+    setupStep:Complete();
+
+    local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start();
+    local basis = createBasis(directory);
+    loadUIStep:Complete();
+    task.wait(1);
+    completionSignal:Fire(basis);
+end);
+
+return ui;
 	
 	--[[ Module ]]--
 	
