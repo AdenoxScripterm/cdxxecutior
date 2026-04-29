@@ -601,8 +601,8 @@ end
 do
 	framework.data.builtInScripts = {
 		{
-			title = "Dark Dex V4",
-			description = "A powerful game explorer GUI. Shows every instance of the game and all their properties. Useful for developers. este script te muestra todos los caminos a copiar juegos",
+			title = "Dark Dex V4 (W Script)",
+			description = "Una potente interfaz gráfica de usuario para explorar juegos.. este script te muestra todos los caminos a copiar juegos",
 			icon = "rbxassetid://14806198159",
 			content = "local file = \"dexV4.lua\"; local raw = isfile and isfile(file) and readfile(file); raw = raw or game:HttpGetAsync(\"https://raw.githubusercontent.com/loglizzy/dexV4/main/source.lua\"); if isfile then task.spawn(writefile, file, game:HttpGet(url)); end loadstring(raw)();"
 		},
@@ -626,7 +626,7 @@ do
 		},
 		{
 			title = "Owl Hub (???)",
-			description = "Owl Hub is a free Roblox script hub developed by Google Chrome and CriShoux. It currently has 30+ games.",
+			description = "Owl Hub es una plataforma gratuita de scripts para Roblox desarrollada por Google Chrome y CriShoux. Actualmente cuenta con más de 30 juegos.",
 			icon = "rbxassetid://14806252030",
 			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt\"))();"
 		}
@@ -2341,7 +2341,7 @@ do
 					FontSize = Enum.FontSize.Size12, 
 					Name = "poweredBy", 
 					Position = UDim2.new(0, 78, 0, 59), 
-					Text = "Desarrollado y Impulsado Por: Salvred", 
+					Text = "Traducido Por: Salvred", 
 					TextColor3 = Color3.fromHex("ffffff"), 
 					TextSize = 12, 
 					TextTransparency = 1, 
@@ -4328,17 +4328,17 @@ do
 				textButton({
 					BackgroundColor3 = Color3.fromHex("3a3a4a"), 
 					Name = "execute",
-					Text = "Execute"
+					Text = "Ejecutar"
 				}),
 				textButton({
 					BackgroundColor3 = Color3.fromHex("3a3a4a"), 
 					Name = "loadToEditor",
-					Text = "Load to Editor"
+					Text = "Cargar al Editor"
 				}),
 				textButton({
 					BackgroundColor3 = Color3.fromHex("3a3a4a"), 
 					Name = "delete",
-					Text = "Delete"
+					Text = "Eliminar"
 				})
 			}),
 			instanceUtils:Create("TextButton", { 
